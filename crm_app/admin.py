@@ -1,6 +1,6 @@
 from django.contrib import admin
-from crm_app.models import Record
+from user_app.models import BillRecord
 
 
 # Register your models here.
-admin.site.register(Record)
+admin.site.register(BillRecord)

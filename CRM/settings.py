@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # custom app
     'crm_app',
+    'user_app',
 ]
 
 MIDDLEWARE = [
