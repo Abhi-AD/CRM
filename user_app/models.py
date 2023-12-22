@@ -1,16 +1,19 @@
+# models.py
+
 from django.db import models
 
-# Create your models here.
 class BillRecord(models.Model):
-     create_at = models.DateTimeField(auto_now_add = True)
-     first_name = models.CharField(max_length = 100)
-     last_name = models.CharField(max_length = 100)
-     email = models.CharField(max_length = 100)
-     phone = models.CharField(max_length = 100)
-     address = models.CharField(max_length = 100)
-     city = models.CharField(max_length = 100)
-     state = models.CharField(max_length = 100)
-     zipcode = models.CharField(max_length = 100)
-     
-     def __str__(self):
-          return(f"{self.first_name}{self.last_name}")
+    date = models.DateField(auto_now_add = True)
+    description = models.TextField()
+
+    # Details about the items in the bill
+    item_name = models.CharField(max_length=100)
+    quantity = models.IntegerField()
+    unit_price = models.DecimalField(max_digits=10, decimal_places=2)
+
+    # Additional fields (you can customize these based on your needs)
+    customer_name = models.CharField(max_length=100)
+    payment_status = models.CharField(max_length=20, choices=[('pending', 'Pending'), ('paid', 'Paid')])
+
+    def __str__(self):
+        return f"{self.bill_number} - {self.customer_name}"

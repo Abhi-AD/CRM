@@ -16,7 +16,7 @@
                                         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsWREe45cinfelC9MSnIDVvmmzMvnR2AkfwzgoRvAQhGttsHOhVpd6UVstgtY6ajpEk78&usqp=CAU
                                         " alt=""
                                         height="100px">
-                                   <h5 class="my-3">{{customer_record.first_name}} {{customer_record.last_name}}</h5>
+                                   <h5 class="my-3">{{customer_record.customer_name}}</h5>
                               </div>
                          </div>
                     </div>
@@ -28,62 +28,70 @@
                                              <p class="mb-0">Full Name</p>
                                         </div>
                                         <div class="col-sm-9">
-                                             <p class="text-muted mb-0">{{customer_record.first_name}}
-                                                  {{customer_record.last_name}}</p>
+                                             <p class="text-muted mb-0">{{customer_record.customer_name}}</p>
                                         </div>
                                    </div>
                                    <hr>
                                    <div class="row">
                                         <div class="col-sm-3">
-                                             <p class="mb-0">ID</p>
+                                             <p class="mb-0">Bill Number</p>
                                         </div>
                                         <div class="col-sm-9">
-                                             <p class="text-muted mb-0">{{customer_record.id}}</p>
+                                             <p class="text-muted mb-0">{{customer_record.bill_number}}</p>
                                         </div>
                                    </div>
                                    <hr>
                                    <div class="row">
                                         <div class="col-sm-3">
-                                             <p class="mb-0">Email</p>
+                                             <p class="mb-0">Item Name</p>
                                         </div>
                                         <div class="col-sm-9">
-                                             <p class="text-muted mb-0">{{customer_record.email}}</p>
+                                             <p class="text-muted mb-0">{{customer_record.item_name}}</p>
                                         </div>
                                    </div>
                                    <hr>
                                    <div class="row">
                                         <div class="col-sm-3">
-                                             <p class="mb-0">Contact</p>
+                                             <p class="mb-0">Quantity</p>
                                         </div>
                                         <div class="col-sm-9">
-                                             <p class="text-muted mb-0">{{customer_record.phone}}</p>
+                                             <p class="text-muted mb-0">{{customer_record.quantity}}</p>
                                         </div>
                                    </div>
                                    <hr>
                                    <div class="row">
                                         <div class="col-sm-3">
-                                             <p class="mb-0">Address</p>
+                                             <p class="mb-0">Unit Price</p>
                                         </div>
                                         <div class="col-sm-9">
-                                             <p class="text-muted mb-0">{{customer_record.address}}</p>
+                                             <p class="text-muted mb-0">{{customer_record.unit_price}}</p>
                                         </div>
                                    </div>
                                    <hr>
                                    <div class="row">
                                         <div class="col-sm-3">
-                                             <p class="mb-0">City</p>
+                                             <p class="mb-0">Payment</p>
                                         </div>
                                         <div class="col-sm-9">
-                                             <p class="text-muted mb-0">{{customer_record.city}}</p>
+                                             <p class="text-muted mb-0">{{customer_record.payment_status}}</p>
                                         </div>
                                    </div>
                                    <hr>
                                    <div class="row">
                                         <div class="col-sm-3">
-                                             <p class="mb-0">Join Date</p>
+                                             <p class="mb-0">Create At</p>
                                         </div>
                                         <div class="col-sm-9">
-                                             <p class="text-muted mb-0">{{customer_record.create_at}}</p>
+                                             <p class="text-muted mb-0">{{customer_record.date | date:"d M Y"}}</p>
+                                        </div>
+                                   </div>
+                                   <hr>
+                                   <div class="row">
+                                        <div class="col-sm-3">
+                                             <p class="mb-0">Description</p>
+                                        </div>
+                                        <div class="col-sm-9">
+                                             <p class="text-muted mb-0">{{customer_record.description}}</p>
                                         </div>
                                    </div>
                               </div>
