@@ -1,0 +1,55 @@
+{% extends 'user/base.html' %}
+
+{% block main %}
+{% if user.is_authenticated %}
+<div class="table-responsive">
+     <table class="table table-striped table-hover table-bordered">
+          <thead class="table-warning">
+               <tr>
+                    <th scope="col">Bill_Number</th>
+                    <th scope="col">Customer Name</th>
+                    <th scope="col">Item Name</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Unit Price</th>
+                    <th scope="col">Payment</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Create At</th>
+                    <th scope="col">Details</th>
+               </tr>
+          </thead>
+          <tbody>
+               {% if records %}
+               {% for record in records %}
+               <tr>
+                    <th scope="row">{{record.id}}</th>
+                    <th>{{record.customer_name}}</th>
+                    <th>{{record.item_name}}</th>
+                    <th>{{record.quantity}}</th>
+                    <th>{{record.unit_price}}</th>
+                    <th>{{record.payment_status}}</th>
+                    <th>{{record.description}}</th>
+                    <th>{{record.date | date:"d M Y"}}</th>
+                    <th><a href="{% url 'record' record.pk %}">View</a></th>
+               </tr>
+               {% endfor %}
+               {% endif %}
+          </tbody>
+     </table>
+</div>
+{% else %}
+<div class="col-mb-6 offset-md-3">
+     <h1>Login User</h1>
+     <form method="POST" action="{% url 'home' %}">
+          {% csrf_token %}
+          <div class="mb-3">
+               <input type="text" class="form-control" name="username" placeholder="username" required>
+          </div>
+          <div class="mb-3">
+               <input type="password" class="form-control" name="password" placeholder="password" required>
+          </div>
+          <button type="submit" class="btn btn-success">Login</button>
+
+     </form>
+</div>
+{% endif %}
+{% endblock main %}

@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'crm/base.html' %}
 
 {% block main %}
 <div class="col-mb-6 offset-md-3">
@@ -21,8 +21,9 @@
 
           {{ form.as_p }}
           <br>
-          <button type="submit" class="btn btn-secondary">Register</button>
-
+          <button type="submit" class="btn btn-success">Register</button>
+          <a href="{% url 'main' %}" class="btn btn-secondary">Back</a>
+          <!-- <a href="{% url 'main' %}">Back</a> -->
      </form>
 </div>
 {% endblock main %}

@@ -1,6 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django import forms
+from crm_app.models import Staff
 
 
 class UserSignUpForm(UserCreationForm):
@@ -19,6 +20,10 @@ class UserSignUpForm(UserCreationForm):
             "password2",
         }
 
+class StaffRegisterForm(forms.ModelForm):
+    class Meta:
+        model = Staff
+        fields = "__all__"
 
       
         

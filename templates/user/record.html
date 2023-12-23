@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'user/base.html' %}
 {% load static %}
 {% block main %}
 <div class="col-mb-6 offset-md-3">
@@ -8,18 +8,6 @@
           <form action="" method="post" name="signup">
                {% csrf_token %}
                <div class="row">
-                    <div class="col-lg-4">
-                         <div class="card mb-4">
-                              <div class="card-body text-center">
-                                        <!-- <img src="{{customer_record.feature_image.url }}" alt="{{freelancer_post.title}}"
-                                        height="380px"> -->
-                                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSsWREe45cinfelC9MSnIDVvmmzMvnR2AkfwzgoRvAQhGttsHOhVpd6UVstgtY6ajpEk78&usqp=CAU
-                                        " alt=""
-                                        height="100px">
-                                   <h5 class="my-3">{{customer_record.customer_name}}</h5>
-                              </div>
-                         </div>
-                    </div>
                     <div class="col-lg-8">
                          <div class="card mb-4">
                               <div class="card-body">
@@ -37,7 +25,7 @@
                                              <p class="mb-0">Bill Number</p>
                                         </div>
                                         <div class="col-sm-9">
-                                             <p class="text-muted mb-0">{{customer_record.bill_number}}</p>
+                                             <p class="text-muted mb-0">{{customer_record.id}}</p>
                                         </div>
                                    </div>
                                    <hr>

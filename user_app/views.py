@@ -25,6 +25,27 @@ def home(request):
     else:
         return render(request, "user/home.html", {"records": records})
 
+def record_details(request):
+    records = BillRecord.objects.all()
+
+    # check to see if logging
+    if request.method == "POST":
+        username = request.POST["username"]
+        password = request.POST["password"]
+
+        # authenticate
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            messages.success(request, "User login Sucessfully")
+            return redirect("home")
+        else:
+            messages.error(request, "Username or Password is incorrect.")
+            return redirect("home")
+    else:
+        return render(request, "user/record_details.html", {"records": records})
+
+
 
 def login_user(request):
     pass

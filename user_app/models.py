@@ -16,4 +16,7 @@ class BillRecord(models.Model):
     payment_status = models.CharField(max_length=20, choices=[('pending', 'Pending'), ('paid', 'Paid')])
 
     def __str__(self):
-        return f"{self.bill_number} - {self.customer_name}"
+        return f"{self.id} - {self.customer_name}"
+
+
+          

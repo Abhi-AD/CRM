@@ -2,11 +2,12 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from crm_app.forms import UserSignUpForm
-from user_app.models import BillRecord
+from django.contrib.auth.models import User
+
 
 
 def main(request):
-    records = BillRecord.objects.all()
+    records = User.objects.all()
 
     # check to see if logging
     if request.method == "POST":

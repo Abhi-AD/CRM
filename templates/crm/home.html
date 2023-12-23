@@ -1,11 +1,17 @@
 {% extends 'crm/base.html' %}
 {% block main %}
 {% if user.is_authenticated %}
+{% if user.is_superuser %}
+<h1>Welcome back, {{user.username}}! SuperUser</h1>
+{% else %}
+<h1>Welcome back, {{user.username}}!not a superuser</h1>
+{% endif %}
 <div class="table-responsive">
      <table class="table table-striped table-hover table-bordered">
           <thead class="table-warning">
 
                <tr>
+                    <th scope="col">S.N</th>
                     <th scope="col">Username</th>
                     <th scope="col">Email Address</th>
                     <th scope="col">First Name</th>
@@ -16,11 +22,12 @@
                {% if records %}
                {% for record in records %}
                <tr>
-                    <th scope="row">{{record.username}}</th>
+                    <th scope="row">{{forloop.counter}}</th>
+                    <th>{{record.username}}</th>
                     <th>{{record.first_name}} {{record.email}}</th>
                     <th>{{record.first_name}}</th>
                     <th>{{record.last_name}}</th>
-                    <th><a href="{% url 'record' record.pk %}">View</a></th>
+                    <!-- <th><a href="{% url 'record' record.pk %}">View</a></th> -->
                </tr>
                {% endfor %}
                {% endif %}
