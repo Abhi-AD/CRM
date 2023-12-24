@@ -16,16 +16,17 @@ def main(request):
 
         # authenticate
         user = authenticate(request, username=username, password=password)
-        if user is not None:
+
+        if user is not None and user.is_superuser:
+            # Only allow superusers to log in
             login(request, user)
-            messages.success(request, "You have been login !")
+            messages.success(request, "You have been logged in!")
             return redirect("main")
         else:
             messages.error(request, "Username or Password is incorrect.")
             return redirect("main")
     else:
         return render(request, "crm/home.html", {"records": records})
-
 
 def login_admin(request):
     pass

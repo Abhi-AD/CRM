@@ -3,9 +3,10 @@
 {% block main %}
 {% if user.is_authenticated %}
 {% if user.is_superuser %}
-<h1>Welcome back, {{user.username}}!</h1>
-{% endif %}
+<h1>Welcome back, {{user.username}} SuperUser!</h1>
+{% else %}
 <h1>Welcome back, {{user.username}}! only User</h1>
+{% endif %}
 {% else %}
 <div class="col-mb-6 offset-md-3">
      <h1>Login User</h1>

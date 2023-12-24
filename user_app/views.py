@@ -136,7 +136,7 @@ def update_yoga(request, pk):
             form.save()
             messages.success(request, "Record Has been Updated!")
             return redirect("yoga_details")
-        return render(request, "user/bill/update_yoga.html", {"form": form})
+        return render(request, "user/yoga/update_yoga.html", {"form": form})
     else:
         messages.success(request, "Must Be logged...")
         return redirect("home")

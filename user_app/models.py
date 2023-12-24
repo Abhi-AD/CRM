@@ -25,11 +25,12 @@ class BillRecord(models.Model):
 
 class YogaMember(models.Model):
     first_name = models.CharField(max_length=100)
+    middel_name = models.CharField(max_length=10,blank=True)
     last_name = models.CharField(max_length=100)
     gender = models.CharField(max_length=20, choices=[("male", "Male"),("female", "Female"),("other", "Other"),])
     images = models.ImageField(upload_to="YogaMember/%Y/%m/%d", blank=False)
-    street_address = models.CharField(max_length=255, blank=True, null=True)
-    street_address2 = models.CharField(max_length=255, blank=True, null=True)
+    street_address = models.CharField(max_length=255, blank=True)
+    street_address2 = models.CharField(max_length=255, blank=True)
     city = models.CharField(max_length=100, blank=True, null=True)
     state_province = models.CharField(max_length=100, blank=True, null=True)
     zip_code = models.CharField(max_length=20)
