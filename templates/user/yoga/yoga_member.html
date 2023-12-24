@@ -1,0 +1,118 @@
+{% extends 'user/base.html' %}
+{% load static %}
+{% block main %}
+<div class="col-mb-6 offset-md-3">
+     <h2 class="p-2 text-secondary">Customer Records:</h2>
+     <section style="background-color: #eee;">
+          <div class="container py-5">
+               <form action="" method="post" name="signup">
+                    {% csrf_token %}
+                    <div class="row text-capitalize">
+                         <div class="col-lg-4">
+                              <div class="card mb-4">
+                                   <div class="card-body text-center">
+                                        <!-- <img src="{{customer_record.feature_image.url }}" alt="avatar"
+                                        class="rounded-circle img-fluid" style="width: 550px;"> -->
+                                        <img src="{{customer_record.images.url}}" alt="{{customer_record.first_name}}"
+                                             height="200px">
+                                        <h5 class="my-3">{{customer_record.first_name}} {{customer_record.last_name}}
+                                        </h5>
+                                        <p class="text-muted mb-1">Contact : {{customer_record.contact}}</p>
+                                        <p class="text-muted mb-5">MemberShip Types :
+                                             {{customer_record.membership_types}}</p>
+                                   </div>
+                              </div>
+                         </div>
+                         <div class="col-lg-8">
+                              <div class="card mb-4">
+                                   <div class="card-body">
+                                        <div class="row">
+                                             <div class="col-sm-3">
+                                                  <p class="mb-0">Full Name</p>
+                                             </div>
+                                             <div class="col-sm-9">
+                                                  <p class="text-muted mb-0">{{customer_record.first_name}}
+                                                       {{customer_record.last_name}} <br>({{customer_record.gender}})</p>
+                                             </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row">
+                                             <div class="col-sm-3">
+                                                  <p class="mb-0">Id Number</p>
+                                             </div>
+                                             <div class="col-sm-9">
+                                                  <p class="text-muted mb-0">{{customer_record.id}}</p>
+                                             </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row">
+                                             <div class="col-sm-3">
+                                                  <p class="mb-0">Province (City)</p>
+                                             </div>
+                                             <div class="col-sm-9">
+                                                  <p class="text-muted mb-0">{{customer_record.state_province}}
+                                                       ({{customer_record.city}})</p>
+                                             </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row">
+                                             <div class="col-sm-3">
+                                                  <p class="mb-0">Country (Zip_Code)</p>
+                                             </div>
+                                             <div class="col-sm-9">
+                                                  <p class="text-muted mb-0">{{customer_record.country}} <br>
+                                                       ({{customer_record.zip_code}})</p>
+                                             </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row ">
+                                             <div class="col-sm-3">
+                                                  <p class="mb-0">Contact</p>
+                                             </div>
+                                             <div class="col-sm-9 text-lowercase">
+                                                  <p class="text-muted mb-0">
+                                                       {{customer_record.email}}<br>{{customer_record.contact}}<br>{{customer_record.emergency_contact}}<br>{{customer_record.emergency_contact2}}
+                                                  </p>
+                                             </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row">
+                                             <div class="col-sm-3">
+                                                  <p class="mb-0">MemberShip Types</p>
+                                             </div>
+                                             <div class="col-sm-9">
+                                                  <p class="text-muted mb-0">{{customer_record.membership_types}}<br> ({{customer_record.date_of_signature| date:"d M Y"}})</p>
+                                             </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row">
+                                             <div class="col-sm-3">
+                                                  <p class="mb-0">Registration At</p>
+                                             </div>
+                                             <div class="col-sm-9">
+                                                  <p class="text-muted mb-0">{{customer_record.registration_date | date:"d M Y"}}</p>
+                                             </div>
+                                        </div>
+                                        <hr>
+                                        <div class="row">
+                                             <div class="col-sm-3">
+                                                  <p class="mb-0">Description</p>
+                                             </div>
+                                             <div class="col-sm-9">
+                                                  <p class="text-muted mb-0">{{customer_record.description}}</p>
+                                             </div>
+                                        </div>
+                                   </div>
+                              </div>
+                              <a href="{% url 'yoga_details' %}" class="btn btn-secondary">Back</a>
+                              <a href="{% url 'delete_yoga' customer_record.pk %}" class="btn btn-danger">Delete</a>
+                              <a href="{% url 'update_yoga' customer_record.pk %}" class="btn btn-primary">Update</a>
+                         </div>
+                    </div>
+
+
+               </form>
+          </div>
+     </section>
+</div>
+{% endblock main %}

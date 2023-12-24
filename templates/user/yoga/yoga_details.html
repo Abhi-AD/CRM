@@ -1,0 +1,51 @@
+{% extends 'user/base.html' %}
+
+{% block main %}
+{% if user.is_authenticated %}
+<div class="table-responsive">
+     <h1 class="text-center text-capitalize">yoga member details</h1>
+     <table class="table table-striped table-hover table-bordered">
+          <thead class="table-warning">
+               <tr>
+                    <th scope="col">ID Number</th>
+                    <th scope="col">Full Name</th>
+                    <th scope="col">Profile</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Province (City)</th>
+                    <th scope="col">Country (Zip_Code)</th>
+                    <th scope="col">Contact</th>
+                    <th scope="col">MemberShip Types</th>
+                    <th scope="col">Registration At</th>
+                    <th scope="col">Details</th>
+               </tr>
+          </thead>
+          <tbody>
+               {% if yoga_member %}
+               {% for yoga_member in yoga_member %}
+               <tr class="text-capitalize">
+                    <th scope="row">{{yoga_member.id}}</th>
+                    <th>{{yoga_member.first_name}} {{yoga_member.last_name}} <br>({{yoga_member.gender}})</th>
+                    <th><img src="{{yoga_member.images.url}}" alt="{{ yoga_member.first_name }}" class="img-thumbnail"
+                              style="max-width: 40px;"></th>
+                    <th>{{yoga_member.street_address}} ,<br> {{yoga_member.street_address2}}</th>
+                    <th>{{yoga_member.state_province}} ({{yoga_member.city}})</th>
+                    <th>{{yoga_member.country}} ({{yoga_member.zip_code}})</th>
+                    <th class="text-lowercase">
+                         {{yoga_member.email}}<br>{{yoga_member.contact}}<br>{{yoga_member.emergency_contact}}<br>{{yoga_member.emergency_contact2}}
+                    </th>
+                    <th>{{yoga_member.membership_types}}<br> ({{yoga_member.date_of_signature| date:"d M Y"}})</th>
+                    <th>{{yoga_member.registration_date | date:"d M Y"}}</th>
+                    <th>
+                         <a href="{% url 'yoga_member' yoga_member.pk %}">View</a>
+
+                    </th>
+
+               </tr>
+
+               {% endfor %}
+               {% endif %}
+          </tbody>
+     </table>
+</div>
+{% endif %}
+{% endblock main %}
