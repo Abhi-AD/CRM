@@ -17,5 +17,11 @@ urlpatterns = [
     path('yoga_member/<int:pk>/', views.yoga_member, name='yoga_member'),
     path('update_yoga/<int:pk>', views.update_yoga, name='update_yoga'),
     path('delete_yoga/<int:pk>/', views.delete_yoga, name='delete_yoga'),
+    
+    path('add_member/', views.add_member, name='add_member'),
+    path('member_details/', views.member_details, name='member_details'),
+    path('member/<int:pk>/', views.member, name='member'),
+    path('update_member/<int:pk>', views.update_member, name='update_member'),
+    path('delete_member/<int:pk>/', views.delete_member, name='delete_member'),
 ]
 

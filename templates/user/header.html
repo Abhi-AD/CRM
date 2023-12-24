@@ -13,18 +13,31 @@
                     <li class="nav-item">
                          <a class="nav-link" href="{% url 'logout' %}">LogOut</a>
                     </li>
-                    <li class="nav-item">
-                         <a class="nav-link" href="{% url 'add_record' %}">Add Bill</a>
-                    </li>
-                    <li class="nav-item">
-                         <a class="nav-link" href="{% url 'record_details' %}"> Bill Details</a>
-                    </li>
-                    <li class="nav-item">
-                         <a class="nav-link" href="{% url 'add_yoga' %}">Add Yoga Member</a>
-                    </li>
-                    <li class="nav-item">
-                         <a class="nav-link" href="{% url 'yoga_details' %}"> Yoga Member Details</a>
-                    </li>
+                    <li class="nav-item dropdown">
+                         <a class="nav-link dropdown-toggle"  role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                           Home
+                         </a>
+                         <ul class="dropdown-menu">
+                              <li class="nav-link">
+                                   <a class="dropdown-item" href="{% url 'add_record' %}">Add Bill</a>
+                              </li>
+                              <li class="nav-link">
+                                   <a class="dropdown-item" href="{% url 'record_details' %}"> Bill Details</a>
+                              </li>
+                              <li class="nav-link">
+                                   <a class="dropdown-item" href="{% url 'add_yoga' %}">Add Yoga Member</a>
+                              </li>
+                              <li class="nav-link">
+                                   <a class="dropdown-item" href="{% url 'yoga_details' %}"> Yoga Member Details</a>
+                              </li>
+                              <li class="nav-link">
+                                   <a class="dropdown-item" href="{% url 'add_member' %}">Add  Member</a>
+                              </li>
+                              <li class="nav-link">
+                                   <a class="dropdown-item" href="{% url 'member_details' %}">  Member Details</a>
+                              </li>
+                         </ul>
+                       </li>
                     {% else %}
                     <li class="nav-item">
                          <a class="nav-link" href="{% url 'home' %}">LogIn</a>

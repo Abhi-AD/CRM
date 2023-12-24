@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from user_app.forms import AddBillRecordFrom, AddYogaMemberFrom
-from user_app.models import BillRecord, YogaMember
+from user_app.forms import AddBillRecordFrom, AddYogaMemberFrom, AddMemberFrom
+from user_app.models import BillRecord, YogaMember, Member
 
 
 def home(request):
@@ -111,7 +111,9 @@ def add_yoga(request):
 def yoga_details(request):
     if request.user.is_authenticated:
         yoga_member = YogaMember.objects.all()
-        return render(request, "user/yoga/yoga_details.html", {"yoga_member": yoga_member})
+        return render(
+            request, "user/yoga/yoga_details.html", {"yoga_member": yoga_member}
+        )
     else:
         messages.success(request, "YOu Must Be")
         return redirect("home")
@@ -147,3 +149,63 @@ def delete_yoga(request, pk):
     delete_record.delete()
     messages.success(request, f"Account delete for! Successfully.")
     return redirect("yoga_details")
+
+
+#  member record view
+
+
+def add_member(request):
+    form = AddMemberFrom(request.POST or None)
+    if request.user.is_authenticated:
+        if request.method == "POST":
+            if form.is_valid():
+                add_record = form.save()
+                messages.success(request, "New Record ADD...")
+                return redirect("member_details")
+        return render(request, "user/member/add_member.html", {"form": form})
+    else:
+        messages.success(request, "Must Be logged...")
+        return redirect("home")
+
+
+def member_details(request):
+    if request.user.is_authenticated:
+        member = Member.objects.all()
+        return render(
+            request, "user/member/member_details.html", {"member": member}
+        )
+    else:
+        messages.success(request, "YOu Must Be")
+        return redirect("home")
+
+
+def member(request, pk):
+    if request.user.is_authenticated:
+        customer_record = Member.objects.get(id=pk)
+        return render(
+            request, "user/member/member.html", {"customer_record": customer_record}
+        )
+    else:
+        messages.success(request, "YOu Must Be")
+        return redirect("home")
+
+
+def update_member(request, pk):
+    if request.user.is_authenticated:
+        current_record = Member.objects.get(id=pk)
+        form = AddMemberFrom(request.POST or None, instance=current_record)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Record Has been Updated!")
+            return redirect("member_details")
+        return render(request, "user/member/update_member.html", {"form": form})
+    else:
+        messages.success(request, "Must Be logged...")
+        return redirect("home")
+
+
+def delete_member(request, pk):
+    delete_record = Member.objects.get(id=pk)
+    delete_record.delete()
+    messages.success(request, f"Account delete for! Successfully.")
+    return redirect("member_details")

@@ -1,7 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django import forms
-from user_app.models import BillRecord, YogaMember
+from user_app.models import BillRecord, YogaMember, Member
 
 
 class UserSignUpForm(UserCreationForm):
@@ -30,4 +30,10 @@ class AddBillRecordFrom(forms.ModelForm):
 class AddYogaMemberFrom(forms.ModelForm):
     class Meta:
         model = YogaMember
+        fields = "__all__"
+
+
+class AddMemberFrom(forms.ModelForm):
+    class Meta:
+        model = Member
         fields = "__all__"

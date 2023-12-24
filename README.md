@@ -17,13 +17,13 @@
 ```bash
   .\venv\Scripts\activate
 ```
-  3. Clone the project
+  2. Clone the project
 
 ```bash
-  git clone https://github.com/Abhi-AD/employee_management_system
+  git clone https://github.com/Abhi-AD/CRM
 ```
 
-  2. Requirements libraries 
+  3. Requirements libraries 
 
 ```bash
   pip install -r requirements.txt
@@ -61,14 +61,18 @@ To run tests, run the following command
 ## Running the project User
 
 Goto [http://127.0.0.1:8000/](http://127.0.0.1:8000/user)
-- username:  wedf # any User Username
-- password:  @a.bhishek0806 # any User Password
+- username:  wedf 
+<!-- any User Username -->
+- password:  @a.bhishek0806 
+<!-- any User Password -->
 
 ## Running the project Main
 
 Goto [http://127.0.0.1:8000/](http://127.0.0.1:8000/main)
-- username:  crm  # only superuser username
-- password:  crm # only superuser password
+- username:  crm  
+<!-- only superuser username -->
+- password:  crm 
+<!-- only superuser password -->
 
 
 ### Running Django Administration

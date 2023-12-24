@@ -46,4 +46,29 @@ class YogaMember(models.Model):
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
+  
+  
+class Member(models.Model):
+    first_name = models.CharField(max_length=100)
+    middel_name = models.CharField(max_length=10,blank=True)
+    last_name = models.CharField(max_length=100)
+    gender = models.CharField(max_length=20, choices=[("Male", "Male"),("Female", "Female"),("Other", "Other"),])
+    images = models.ImageField(upload_to="Member/%Y/%m/%d", blank=False)
+    street_address = models.CharField(max_length=255, blank=True)
+    street_address2 = models.CharField(max_length=255, blank=True)
+    city = models.CharField(max_length=100, blank=True, null=True)
+    state_province = models.CharField(max_length=100, blank=True, null=True)
+    zip_code = models.CharField(max_length=20)
+    country = models.CharField(max_length=100)
+    email = models.EmailField(unique=True)
+    date_of_birth = models.DateField()
+    membership_types = models.CharField(max_length=20, choices= [("basic", "Basic"),("gold", "Gold"),], default="basic")
+    date_of_signature = models.DateTimeField(default=timezone.now)
+    contact = models.CharField(max_length=10)
+    emergency_contact = models.CharField(max_length=10,blank=True, null=True)
+    emergency_contact2 = models.CharField(max_length=10,blank=True, null=True)
+    registration_date = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.first_name} {self.last_name}"
           
