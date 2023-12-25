@@ -1,8 +1,6 @@
 {% extends 'crm/base.html' %}
 {% block main %}
 {% if user.is_superuser %}
-<h1>Welcome back, {{user.username}}! SuperUser</h1>
-
 <div class="table-responsive">
      <table class="table table-striped table-hover table-bordered">
           <thead class="table-warning">

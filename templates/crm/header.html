@@ -13,8 +13,25 @@
                     <li class="nav-item">
                          <a class="nav-link" href="{% url 'logout_admin' %}">LogOut</a>
                     </li>
-                    <li class="nav-item">
-                         <a class="nav-link" href="{% url 'register_user' %}">User Register</a>
+                    <li class="nav-item dropdown">
+                         <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
+                              aria-expanded="false">
+                              Home
+                         </a>
+                         <ul class="dropdown-menu">
+                              <li class="nav-link">
+                                   <a class="dropdown-item" href="{% url 'register_user' %}">User Register</a>
+                              </li>
+                              <li class="nav-link">
+                                   <a class="dropdown-item" href="{% url 'user' %}">User Details</a>
+                              </li>
+                              <li class="nav-link">
+                                   <a class="dropdown-item" href="{% url 'add_staff' %}"> Add Staff</a>
+                              </li>
+                              <li class="nav-link">
+                                   <a class="dropdown-item" href="{% url 'staff_details' %}">Staff Details</a>
+                              </li>
+                         </ul>
                     </li>
                     {% else %}
                     <li class="nav-item">

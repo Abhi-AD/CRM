@@ -8,14 +8,15 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    
+
                     {% if user.is_authenticated %}
                     <li class="nav-item">
                          <a class="nav-link" href="{% url 'logout' %}">LogOut</a>
                     </li>
                     <li class="nav-item dropdown">
-                         <a class="nav-link dropdown-toggle"  role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                           Home
+                         <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
+                              aria-expanded="false">
+                              Home
                          </a>
                          <ul class="dropdown-menu">
                               <li class="nav-link">
@@ -31,21 +32,21 @@
                                    <a class="dropdown-item" href="{% url 'yoga_details' %}"> Yoga Member Details</a>
                               </li>
                               <li class="nav-link">
-                                   <a class="dropdown-item" href="{% url 'add_member' %}">Add  Member</a>
+                                   <a class="dropdown-item" href="{% url 'add_member' %}">Add Member</a>
                               </li>
                               <li class="nav-link">
-                                   <a class="dropdown-item" href="{% url 'member_details' %}">  Member Details</a>
+                                   <a class="dropdown-item" href="{% url 'member_details' %}"> Member Details</a>
                               </li>
                          </ul>
-                       </li>
+                    </li>
                     {% else %}
                     <li class="nav-item">
                          <a class="nav-link" href="{% url 'home' %}">LogIn</a>
                     </li>
-                    
+
                     {% endif %}
-                         
-                    
+
+
                </ul>
           </div>
      </div>

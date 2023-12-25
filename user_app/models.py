@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 
 
+
 class BillRecord(models.Model):
     date = models.DateField(auto_now_add = True)
     description = models.TextField()
@@ -71,4 +72,3 @@ class Member(models.Model):
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
-          
