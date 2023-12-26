@@ -1,0 +1,45 @@
+{% extends 'crm/base.html' %}
+
+{% block main %}
+{% if user.is_authenticated %}
+<div class="table-responsive">
+     <h1 class="text-center text-capitalize"> stock details</h1>
+     <table class="table  table-hover table-bordered">
+          <thead class="table-primary">
+               <tr>
+                    <th scope="col">ID Number</th>
+                    <th scope="col">Full Name</th>
+                    <th scope="col">Profile</th>
+                    <th scope="col">Selling Price</th>
+                    <th scope="col">Cost Price</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Using Date</th>
+                    <th scope="col">Details</th>
+               </tr>
+          </thead>
+          <tbody>
+               {% if stock %}
+               {% for stock in stock %}
+               <tr class="text-capitalize">
+                    <th scope="row">{{stock.id}}</th>
+                    <th>{{stock.name}}</th>
+                    <th><img src="{{stock.images.url}}" alt="{{ stock.first_name }}" class="img-thumbnail"
+                              style="max-width: 40px;"></th>
+                    <th>{{stock.selling_price}}</th>
+                    <th>{{stock.cost_price}}</th>
+                    <th>{{stock.quantity}}</th>
+                    <th>{{stock.using_date}} day</th>
+                    <th>
+                         <a href="{% url 'stock' stock.pk %}">View</a>
+
+                    </th>
+
+               </tr>
+
+               {% endfor %}
+               {% endif %}
+          </tbody>
+     </table>
+</div>
+{% endif %}
+{% endblock main %}

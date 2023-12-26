@@ -1,0 +1,17 @@
+{% extends 'crm/base.html' %}
+
+{% block main %}
+<div class="col-md-6 offset-md-3 ">
+     <h1>Add  Stock</h1>
+     <form method='POST' action="{% url 'add_stock' %}" enctype="multipart/form-data">
+          {% csrf_token %}
+          {{form.as_p}}
+
+    <button type="submit" class="btn btn-success">Add Stock</button>
+    <a href="{% url 'stock_details' %}" class="btn btn-secondary">Back</a>
+
+
+
+     </form>
+</div>
+{% endblock main %}

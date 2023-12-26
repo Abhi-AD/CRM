@@ -16,7 +16,7 @@
                     <li class="nav-item dropdown">
                          <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
                               aria-expanded="false">
-                              Home
+                              User
                          </a>
                          <ul class="dropdown-menu">
                               <li class="nav-link">
@@ -30,6 +30,20 @@
                               </li>
                               <li class="nav-link">
                                    <a class="dropdown-item" href="{% url 'staff_details' %}">Staff Details</a>
+                              </li>
+                         </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                         <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
+                              aria-expanded="false">
+                              Product Details
+                         </a>
+                         <ul class="dropdown-menu">
+                              <li class="nav-link">
+                                   <a class="dropdown-item" href="{% url 'add_stock' %}">Add Stock</a>
+                              </li>
+                              <li class="nav-link">
+                                   <a class="dropdown-item" href="{% url 'stock_details' %}"> Stock Details</a>
                               </li>
                          </ul>
                     </li>

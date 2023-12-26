@@ -76,15 +76,18 @@ def bill_record(request, pk):
 def update_record(request, pk):
     if request.user.is_authenticated:
         current_record = BillRecord.objects.get(id=pk)
-        form = AddBillRecordFrom(request.POST or None, instance=current_record)
+        form = AddBillRecordFrom(request.POST or None, request.FILES or None, instance=current_record)
+
         if form.is_valid():
             form.save()
-            messages.success(request, "Record Has been Updated!")
+            messages.success(request, "Record has been updated!")
             return redirect("record_details")
+
         return render(request, "user/bill/update_record.html", {"form": form})
     else:
-        messages.success(request, "Must Be logged...")
+        messages.success(request, "Must be logged in...")
         return redirect("home")
+
 
 
 def delete_record(request, pk):
@@ -139,14 +142,17 @@ def yoga_member(request, pk):
 def update_yoga(request, pk):
     if request.user.is_authenticated:
         current_record = YogaMember.objects.get(id=pk)
-        form = AddYogaMemberFrom(request.POST or None, instance=current_record)
+        form = AddYogaMemberFrom(
+            request.POST or None, request.FILES or None, instance=current_record
+        )
         if form.is_valid():
             form.save()
-            messages.success(request, "Record Has been Updated!")
+            messages.success(request, "Record has been updated!")
             return redirect("yoga_details")
+
         return render(request, "user/yoga/update_yoga.html", {"form": form})
     else:
-        messages.success(request, "Must Be logged...")
+        messages.success(request, "Must be logged in...")
         return redirect("home")
 
 
@@ -180,9 +186,7 @@ def add_member(request):
 def member_details(request):
     if request.user.is_authenticated:
         member = Member.objects.all()
-        return render(
-            request, "user/member/member_details.html", {"member": member}
-        )
+        return render(request, "user/member/member_details.html", {"member": member})
     else:
         messages.success(request, "YOu Must Be")
         return redirect("home")
@@ -202,14 +206,18 @@ def member(request, pk):
 def update_member(request, pk):
     if request.user.is_authenticated:
         current_record = Member.objects.get(id=pk)
-        form = AddMemberFrom(request.POST or None, instance=current_record)
+        form = AddMemberFrom(
+            request.POST or None, request.FILES or None, instance=current_record
+        )
+
         if form.is_valid():
             form.save()
-            messages.success(request, "Record Has been Updated!")
+            messages.success(request, "Record has been updated!")
             return redirect("member_details")
+
         return render(request, "user/member/update_member.html", {"form": form})
     else:
-        messages.success(request, "Must Be logged...")
+        messages.success(request, "Must be logged in...")
         return redirect("home")
 
 

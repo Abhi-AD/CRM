@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     # custom app
     'crm_app',
     'user_app',
+    'member_app',
 ]
 
 MIDDLEWARE = [

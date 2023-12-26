@@ -21,10 +21,6 @@ class BillRecord(models.Model):
     def __str__(self):
         return f"{self.id} - {self.customer_name}"
 
-
-
-
-
 class YogaMember(models.Model):
     first_name = models.CharField(max_length=100)
     middel_name = models.CharField(max_length=10,blank=True)
@@ -59,7 +55,6 @@ class YogaMember(models.Model):
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
   
-  
 class Member(models.Model):
     first_name = models.CharField(max_length=100)
     middel_name = models.CharField(max_length=10,blank=True)
@@ -91,3 +86,4 @@ class Member(models.Model):
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
+

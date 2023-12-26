@@ -1,0 +1,16 @@
+{% extends 'user/base.html' %}
+
+{% block main %}
+<div class="col-md-6 offset-md-3 ">
+     <h1>Update  Stock Details</h1>
+     <form method='POST' enctype="multipart/form-data">
+          {% csrf_token %}
+          {{form.as_p}}
+
+    <button type="submit" class="btn btn-success">Update</button>
+    <a href="{% url 'stock_details' %}"><button type="submit" class="btn btn-secondary">Back</button></a>
+
+
+     </form>
+</div>
+{% endblock main %}
