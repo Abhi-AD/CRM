@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from crm_app.forms import UserSignUpForm, StaffRegisterForm
+from crm_app.forms import UserSignUpForm, StaffRegisterForm, StockAddForm
 from django.contrib.auth.models import User
-from crm_app.models import Staff
+from crm_app.models import Staff, Stock
 
 
 def main(request):
@@ -28,13 +28,12 @@ def main(request):
 
 
 def user(request):
-    if request.user.is_authenticated:    
+    if request.user.is_authenticated:
         records = User.objects.all()
         return render(request, "crm/user/user.html", {"records": records})
     else:
         messages.success(request, "Must Be logged...")
         return redirect("main")
-        
 
 
 def login_admin(request):
@@ -63,7 +62,7 @@ def register_user(request):
         return render(request, "crm/user/register.html", {"form": form})
 
 
-# bill record view
+# staff record view
 
 
 def add_staff(request):
@@ -111,7 +110,7 @@ def update_staff(request, pk):
             form.save()
             messages.success(request, "Record Has been Updated!")
             return redirect("staff_details")
-        
+
         return render(request, "crm/staff/update_staff.html", {"form": form})
     else:
         messages.success(request, "Must Be logged...")
@@ -123,3 +122,68 @@ def delete_staff(request, pk):
     delete_record.delete()
     messages.success(request, f"Account delete for! Successfully.")
     return redirect("staff_details")
+
+
+# stock record view
+
+
+def add_stock(request):
+    form = StockAddForm(request.POST or None)
+    if request.user.is_authenticated:
+        if request.method == "POST":
+            form = StockAddForm(request.POST, request.FILES)
+            if form.is_valid():
+                add_record = form.save()
+                messages.success(request, "New Record ADD...")
+                return redirect("stock_details")
+            else:
+                form = StockAddForm()
+        return render(request, "crm/stock/add_stock.html", {"form": form})
+    else:
+        messages.success(request, "Must Be logged...")
+        return redirect("main")
+
+
+def stock_details(request):
+    if request.user.is_authenticated:
+        stock = Stock.objects.all()
+        return render(request, "crm/stock/stock_details.html", {"stock": stock})
+    else:
+        messages.success(request, "YOu Must Be")
+        return redirect("main")
+
+
+def stock(request, pk):
+    if request.user.is_authenticated:
+        customer_record = Stock.objects.get(id=pk)
+        return render(
+            request, "crm/stock/stock.html", {"customer_record": customer_record}
+        )
+    else:
+        messages.success(request, "YOu Must Be")
+        return redirect("main")
+
+def update_stock(request, pk):
+    if request.user.is_authenticated:
+        current_record = Stock.objects.get(id=pk)
+        form = StockAddForm(request.POST or None, request.FILES or None, instance=current_record)
+
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Record has been updated!")
+            return redirect("stock_details")
+
+        return render(request, "crm/stock/update_stock.html", {"form": form})
+    else:
+        messages.success(request, "Must be logged in...")
+        return redirect("main")
+
+
+
+
+
+def delete_stock(request, pk):
+    delete_record = Stock.objects.get(id=pk)
+    delete_record.delete()
+    messages.success(request, f"Account delete for! Successfully.")
+    return redirect("stock_details")

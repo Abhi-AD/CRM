@@ -29,3 +29,16 @@ class Staff(models.Model):
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
 
+
+class Stock(models.Model):
+    selling_price = models.PositiveIntegerField()
+    cost_price = models.PositiveIntegerField()
+    quantity = models.PositiveIntegerField()
+    name = models.CharField(max_length=100)
+    using_date = models.IntegerField()
+    images = models.ImageField(upload_to="Stock/%Y/%m/%d", blank=False)
+    
+    
+    
+    def __str__(self):
+        return self.name

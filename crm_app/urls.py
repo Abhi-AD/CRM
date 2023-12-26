@@ -14,4 +14,11 @@ urlpatterns = [
     path('staff/<int:pk>/', views.staff, name='staff'),
     path('update_staff/<int:pk>', views.update_staff, name='update_staff'),
     path('delete_staff/<int:pk>/', views.delete_staff, name='delete_staff'),
+    
+    # stock
+    path('add_stock/', views.add_stock, name='add_stock'),
+    path('stock_details/', views.stock_details, name='stock_details'),
+    path('stock/<int:pk>/', views.stock, name='stock'),
+    path('update_stock/<int:pk>', views.update_stock, name='update_stock'),
+    path('delete_stock/<int:pk>/', views.delete_stock, name='delete_stock'),
 ]
