@@ -1,7 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
-
+from django.core.exceptions import ValidationError
+from datetime import date
 # Create your models here.
 
 
@@ -17,6 +18,14 @@ class Staff(models.Model):
     address = models.CharField(max_length=255, blank=True)
     hire_date = models.DateField(auto_now_add = True)
 
+    def clean(self):
+        # Check if the person is less than 17 years old
+        age_limit = 17
+        if self.date_of_birth:
+            age = (date.today() - self.date_of_birth).days // 365
+            if age < age_limit:
+                raise ValidationError({'date_of_birth': 'Must be at least 17 years old.'})
+            
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
 

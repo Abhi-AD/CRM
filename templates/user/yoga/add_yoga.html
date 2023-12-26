@@ -3,7 +3,7 @@
 {% block main %}
 <div class="col-md-6 offset-md-3 ">
      <h1>Add Yoga Member</h1>
-     <form method='POST' action="{% url 'add_yoga' %}">
+     <form method='POST' action="{% url 'add_yoga' %}" enctype="multipart/form-data">
           {% csrf_token %}
           {{form.as_p}}
 

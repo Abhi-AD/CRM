@@ -1,7 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
-
+from django.core.exceptions import ValidationError
+from datetime import date
 
 
 class BillRecord(models.Model):
@@ -37,13 +38,23 @@ class YogaMember(models.Model):
     zip_code = models.CharField(max_length=20)
     country = models.CharField(max_length=100)
     email = models.EmailField(unique=True)
-    date_of_birth = models.DateField()
+    date_of_birth = models.DateField(default=timezone.now)
     membership_types = models.CharField(max_length=20, choices= [("basic", "Basic"),("gold", "Gold"),], default="basic")
     date_of_signature = models.DateTimeField(default=timezone.now)
     contact = models.CharField(max_length=10)
     emergency_contact = models.CharField(max_length=10,blank=True, null=True)
     emergency_contact2 = models.CharField(max_length=10,blank=True, null=True)
     registration_date = models.DateField(auto_now_add=True)
+    
+    def clean(self):
+        # Check if the person is less than 5 years old
+        age_limit = 5
+        if self.date_of_birth:
+            age = (date.today() - self.date_of_birth).days // 365
+            if age < age_limit:
+                raise ValidationError({'date_of_birth': 'Must be at least 5 years old.'})
+
+
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
@@ -62,13 +73,21 @@ class Member(models.Model):
     zip_code = models.CharField(max_length=20)
     country = models.CharField(max_length=100)
     email = models.EmailField(unique=True)
-    date_of_birth = models.DateField()
+    date_of_birth = models.DateField(default=timezone.now)
     membership_types = models.CharField(max_length=20, choices= [("basic", "Basic"),("gold", "Gold"),], default="basic")
     date_of_signature = models.DateTimeField(default=timezone.now)
     contact = models.CharField(max_length=10)
     emergency_contact = models.CharField(max_length=10,blank=True, null=True)
     emergency_contact2 = models.CharField(max_length=10,blank=True, null=True)
     registration_date = models.DateField(auto_now_add=True)
+
+    def clean(self):
+        # Check if the person is less than 17 years old
+        age_limit = 17
+        if self.date_of_birth:
+            age = (date.today() - self.date_of_birth).days // 365
+            if age < age_limit:
+                raise ValidationError({'date_of_birth': 'Must be at least 17 years old.'})
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"

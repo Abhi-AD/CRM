@@ -40,10 +40,13 @@ def add_record(request):
     form = AddBillRecordFrom(request.POST or None)
     if request.user.is_authenticated:
         if request.method == "POST":
+            form = AddBillRecordFrom(request.POST, request.FILES)
             if form.is_valid():
                 add_record = form.save()
                 messages.success(request, "New Record ADD...")
                 return redirect("record_details")
+        else:
+            form = AddBillRecordFrom()
         return render(request, "user/bill/add_record.html", {"form": form})
     else:
         messages.success(request, "Must Be logged...")
@@ -98,10 +101,13 @@ def add_yoga(request):
     form = AddYogaMemberFrom(request.POST or None)
     if request.user.is_authenticated:
         if request.method == "POST":
+            form = AddYogaMemberFrom(request.POST, request.FILES)
             if form.is_valid():
                 add_record = form.save()
                 messages.success(request, "New Record ADD...")
                 return redirect("yoga_details")
+        else:
+            form = AddYogaMemberFrom()
         return render(request, "user/yoga/add_yoga.html", {"form": form})
     else:
         messages.success(request, "Must Be logged...")
@@ -158,10 +164,13 @@ def add_member(request):
     form = AddMemberFrom(request.POST or None)
     if request.user.is_authenticated:
         if request.method == "POST":
+            form = AddMemberFrom(request.POST, request.FILES)
             if form.is_valid():
                 add_record = form.save()
                 messages.success(request, "New Record ADD...")
                 return redirect("member_details")
+        else:
+            form = AddMemberFrom()
         return render(request, "user/member/add_member.html", {"form": form})
     else:
         messages.success(request, "Must Be logged...")

@@ -3,7 +3,7 @@
 {% block main %}
 <div class="col-md-6 offset-md-3 ">
      <h1>Add  Staff</h1>
-     <form method='POST' action="{% url 'add_staff' %}">
+     <form method='POST' action="{% url 'add_staff' %}" enctype="multipart/form-data">
           {% csrf_token %}
           {{form.as_p}}
 
