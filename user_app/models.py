@@ -92,5 +92,27 @@ class Member(models.Model):
 
 
 
+class Product(models.Model):
+    name = models.CharField(max_length=255)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    images = models.ImageField(upload_to="product/%Y/%m/%d", blank=False)
+    
+    
+    def __str__(self):
+        return f"{self.name} price:{self.price}"
+
+
+
+
+class CashTransaction(models.Model):
+    name = models.CharField(max_length = 255)
+    amount = models.DecimalField(max_digits=10, decimal_places=2)
+    transaction_type = models.CharField(max_length=8, choices=[("Payment", "Payment"),
+        ("Pending", "Pending"),])
+    date = models.DateField(default=timezone.now)
+    description = models.TextField()
+
+    def __str__(self):
+        return f"{self.transaction_type} - {self.amount} {self.name}"
 
 

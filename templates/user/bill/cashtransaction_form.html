@@ -1,0 +1,35 @@
+{% extends "user/base.html" %}
+{% load static %}
+{% block main %}
+<div class="col-md-6 offset-md-3 ">
+     <h1>Add Cash Transaction</h1>
+     <form method='POST'  enctype="multipart/form-data">
+          {% csrf_token %}
+          {{form.as_p}}
+
+    <button type="submit" class="btn btn-success">Paymen</button>
+    <a href="{% url 'home' %}" class="btn btn-secondary">Back</a>
+
+
+
+     </form>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock main %}

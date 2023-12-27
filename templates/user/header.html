@@ -42,11 +42,31 @@
                     <li class="nav-item dropdown">
                          <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
                               aria-expanded="false">
-                              Member Details
+                              Product
                          </a>
                          <ul class="dropdown-menu">
                               <li class="nav-link">
                                    <a class="dropdown-item" href="{% url 'stock_details_view' %}"> Stock Details</a>
+                              </li>
+                              <li class="nav-link">
+                                   <a class="dropdown-item" href="{% url 'product_details' %}"> Product Details</a>
+                              </li>
+                              <li class="nav-link">
+                                   <a class="dropdown-item" href="{% url 'add_product' %}"> ADD Product</a>
+                              </li>
+                         </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                         <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
+                              aria-expanded="false">
+                              Payment
+                         </a>
+                         <ul class="dropdown-menu">
+                              <li class="nav-link">
+                                   <a class="dropdown-item" href="{% url 'cash_transaction_create' %}"> Cash Transaction</a>
+                              </li>
+                              <li class="nav-link">
+                                   <a class="dropdown-item" href="{% url 'cash_transaction_list' %}"> Cash Transaction List</a>
                               </li>
                          </ul>
                     </li>

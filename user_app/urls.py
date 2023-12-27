@@ -29,5 +29,14 @@ urlpatterns = [
     path('stock_view/<int:pk>/', views.stock_view, name='stock_view'),
     
     
+    path('add_product/', views.add_product, name='add_product'),
+    path('product_details/', views.product_details, name='product_details'),
+    path('product/<int:pk>/', views.product, name='product'),
+    path('update_product/<int:pk>', views.update_product, name='update_product'),
+    path('delete_product/<int:pk>/', views.delete_product, name='delete_product'),
+    
+    path('cash_transaction_create/', views.cash_transaction_create, name="cash_transaction_create"),
+    path('cash_transaction_list/', views.cash_transaction_list, name="cash_transaction_list"),
+    
 ]
 

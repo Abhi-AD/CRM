@@ -1,0 +1,34 @@
+{% extends 'user/base.html' %}
+
+{% block main %}
+{% if user.is_authenticated %}
+<div class="table-responsive text-capitalize">
+     <h1 class="text-center"> product details</h1>
+     <table class="table  table-hover table-bordered">
+          <thead class="table-warning">
+               <tr>
+                    <th scope="col">S.N</th>
+                    <th scope="col"> Name</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Profile</th>
+                    <th scope="col">Details</th>
+               </tr>
+          </thead>
+          <tbody>
+               {% if product %}
+               {% for product in product %}
+               <tr>
+                    <th scope="row">{{product.id}}</th>
+                    <th>{{product.name}}</th>
+                    <th>Rs. {{product.price}}</th>
+                    <th><img src="{{product.images.url}}" alt="{{ product.name }}" class="img-thumbnail"
+                              style="max-width: 40px;"></th>
+                    <th><a href="{% url 'product' product.pk %}"  class="text-danger">View</a></th>
+               </tr>
+               {% endfor %}
+               {% endif %}
+          </tbody>
+     </table>
+</div>
+{% endif %}
+{% endblock main %}
