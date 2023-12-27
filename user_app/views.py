@@ -4,6 +4,7 @@ from django.contrib import messages
 from user_app.forms import AddBillRecordFrom, AddYogaMemberFrom, AddMemberFrom
 from user_app.models import BillRecord, YogaMember, Member
 from crm_app.models import Stock
+import datetime
 
 
 def home(request):
@@ -249,3 +250,20 @@ def stock_view(request, pk):
     else:
         messages.success(request, "YOu Must Be")
         return redirect("main")
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    

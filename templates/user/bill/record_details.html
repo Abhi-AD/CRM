@@ -21,7 +21,7 @@
                {% if records %}
                {% for record in records %}
                <tr>
-                    <th scope="row">{{record.id}}</th>
+                    <th scope="row">Bill_{{record.registration_date | date:"y"}}__{{record.id}}</th>
                     <th>{{record.customer_name}}</th>
                     <th>{{record.item_name}}</th>
                     <th>{{record.quantity}}</th>

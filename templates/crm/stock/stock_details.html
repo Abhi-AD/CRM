@@ -21,7 +21,7 @@
                {% if stock %}
                {% for stock in stock %}
                <tr class="text-capitalize">
-                    <th scope="row">{{stock.id}}</th>
+                    <th scope="row">Stock_{{stock.current_date | date:"y"}}__{{stock.id}}</th>
                     <th>{{stock.name}}</th>
                     <th><img src="{{stock.images.url}}" alt="{{ stock.first_name }}" class="img-thumbnail"
                               style="max-width: 40px;"></th>

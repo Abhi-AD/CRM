@@ -22,7 +22,7 @@
                {% if staff %}
                {% for staff in staff %}
                <tr class="text-capitalize">
-                    <th scope="row">{{staff.id}}</th>
+                    <th scope="row">Staff_{{staff.hire_date | date:"y"}}__{{staff.id}}</th>
                     <th>{{staff.first_name}} {{staff.last_name}} <br>({{staff.gender}})</th>
                     <th><img src="{{staff.images.url}}" alt="{{ staff.first_name }}" class="img-thumbnail"
                               style="max-width: 40px;"></th>

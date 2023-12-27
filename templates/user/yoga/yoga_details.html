@@ -23,7 +23,7 @@
                {% if yoga_member %}
                {% for yoga_member in yoga_member %}
                <tr class="text-capitalize">
-                    <th scope="row">{{yoga_member.id}}</th>
+                    <th scope="row">Yoga_{{yoga_member.registration_date | date:"y"}}__{{yoga_member.id}}</th>
                     <th>{{yoga_member.first_name}} {{yoga_member.last_name}} <br>({{yoga_member.gender}})</th>
                     <th><img src="{{yoga_member.images.url}}" alt="{{ yoga_member.first_name }}" class="img-thumbnail"
                               style="max-width: 40px;"></th>

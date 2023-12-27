@@ -17,6 +17,7 @@ class Staff(models.Model):
     date_of_birth = models.DateField(default=timezone.now)
     address = models.CharField(max_length=255, blank=True)
     hire_date = models.DateField(auto_now_add = True)
+    
 
     def clean(self):
         # Check if the person is less than 17 years old
@@ -37,6 +38,7 @@ class Stock(models.Model):
     name = models.CharField(max_length=100)
     using_date = models.IntegerField()
     images = models.ImageField(upload_to="Stock/%Y/%m/%d", blank=False)
+    current_date = models.DateField(timezone.now())
     
     
     

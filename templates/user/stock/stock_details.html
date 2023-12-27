@@ -21,7 +21,7 @@
                {% if stock_view %}
                {% for stock_view in stock_view %}
                <tr class="text-capitalize">
-                    <th scope="row">{{stock_view.id}}</th>
+                    <th scope="row">Stock_{{stock_view.current_date | date:"y"}}__{{stock_view.id}}</th>
                     <th>{{stock_view.name}}</th>
                     <th><img src="{{stock_view.images.url}}" alt="{{ stock_view.first_name }}" class="img-thumbnail"
                               style="max-width: 40px;"></th>

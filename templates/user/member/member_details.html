@@ -23,7 +23,7 @@
                {% if member %}
                {% for member in member %}
                <tr class="text-capitalize">
-                    <th scope="row">{{member.id}}</th>
+                    <th scope="row">MEB_{{member.registration_date | date:"y"}}__{{member.id}}</th>
                     <th>{{member.first_name}} {{member.last_name}} <br>({{member.gender}})</th>
                     <th><img src="{{member.images.url}}" alt="{{ member.first_name }}" class="img-thumbnail"
                               style="max-width: 40px;"></th>

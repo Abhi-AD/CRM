@@ -13,6 +13,9 @@ class BillRecord(models.Model):
     item_name = models.CharField(max_length=100)
     quantity = models.IntegerField()
     unit_price = models.DecimalField(max_digits=10, decimal_places=2)
+    registration_date = models.DateField(auto_now_add=True)
+
+    
 
     # Additional fields (you can customize these based on your needs)
     customer_name = models.CharField(max_length=100)
@@ -86,4 +89,8 @@ class Member(models.Model):
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
+
+
+
+
 
