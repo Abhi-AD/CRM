@@ -39,6 +39,17 @@
                               </li>
                          </ul>
                     </li>
+                    <li class="nav-item dropdown">
+                         <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown"
+                              aria-expanded="false">
+                              Member Details
+                         </a>
+                         <ul class="dropdown-menu">
+                              <li class="nav-link">
+                                   <a class="dropdown-item" href="{% url 'stock_details_view' %}"> Stock Details</a>
+                              </li>
+                         </ul>
+                    </li>
                     
                     {% else %}
                     <li class="nav-item">

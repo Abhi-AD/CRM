@@ -23,5 +23,11 @@ urlpatterns = [
     path('member/<int:pk>/', views.member, name='member'),
     path('update_member/<int:pk>', views.update_member, name='update_member'),
     path('delete_member/<int:pk>/', views.delete_member, name='delete_member'),
+    
+    # view user
+    path('stock_details_view/', views.stock_details_view, name='stock_details_view'),
+    path('stock_view/<int:pk>/', views.stock_view, name='stock_view'),
+    
+    
 ]
 

@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from user_app.forms import AddBillRecordFrom, AddYogaMemberFrom, AddMemberFrom
 from user_app.models import BillRecord, YogaMember, Member
+from crm_app.models import Stock
 
 
 def home(request):
@@ -226,3 +227,25 @@ def delete_member(request, pk):
     delete_record.delete()
     messages.success(request, f"Account delete for! Successfully.")
     return redirect("member_details")
+
+
+
+# stock details view
+def stock_details_view(request):
+    if request.user.is_authenticated:
+        stock_view = Stock.objects.all()
+        return render(request, "user/stock/stock_details.html", {"stock_view": stock_view})
+    else:
+        messages.success(request, "YOu Must Be")
+        return redirect("main")
+
+
+def stock_view(request, pk):
+    if request.user.is_authenticated:
+        customer_record = Stock.objects.get(id=pk)
+        return render(
+            request, "user/stock/stock.html", {"customer_record": customer_record}
+        )
+    else:
+        messages.success(request, "YOu Must Be")
+        return redirect("main")

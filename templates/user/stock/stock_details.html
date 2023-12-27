@@ -1,0 +1,45 @@
+{% extends 'user/base.html' %}
+
+{% block main %}
+{% if user.is_authenticated %}
+<div class="table-responsive">
+     <h1 class="text-center text-capitalize"> stock details</h1>
+     <table class="table  table-hover table-bordered">
+          <thead class="table-primary">
+               <tr>
+                    <th scope="col">ID Number</th>
+                    <th scope="col">Full Name</th>
+                    <th scope="col">Profile</th>
+                    <th scope="col">Selling Price</th>
+                    <th scope="col">Cost Price</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Using Date</th>
+                    <th scope="col">Details</th>
+               </tr>
+          </thead>
+          <tbody>
+               {% if stock_view %}
+               {% for stock_view in stock_view %}
+               <tr class="text-capitalize">
+                    <th scope="row">{{stock_view.id}}</th>
+                    <th>{{stock_view.name}}</th>
+                    <th><img src="{{stock_view.images.url}}" alt="{{ stock_view.first_name }}" class="img-thumbnail"
+                              style="max-width: 40px;"></th>
+                    <th>{{stock_view.selling_price}}</th>
+                    <th>{{stock_view.cost_price}}</th>
+                    <th>{{stock_view.quantity}}</th>
+                    <th>{{stock_view.using_date}} day</th>
+                    <th>
+                         <a href="{% url 'stock_view' stock_view.pk %}">View</a>
+
+                    </th>
+
+               </tr>
+
+               {% endfor %}
+               {% endif %}
+          </tbody>
+     </table>
+</div>
+{% endif %}
+{% endblock main %}
