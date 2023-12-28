@@ -3,7 +3,9 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from crm_app.forms import UserSignUpForm, StaffRegisterForm, StockAddForm
 from django.contrib.auth.models import User
-from crm_app.models import Staff, Stock
+from crm_app.models import Staff, Stock,Salary
+from user_app.models import CashTransaction
+from django.utils import timezone
 
 
 def main(request):
@@ -179,11 +181,59 @@ def update_stock(request, pk):
         return redirect("main")
 
 
-
-
-
 def delete_stock(request, pk):
     delete_record = Stock.objects.get(id=pk)
     delete_record.delete()
     messages.success(request, f"Account delete for! Successfully.")
     return redirect("stock_details")
+
+
+
+
+# salary pay
+from crm_app.forms import *
+
+# cash Transaction details
+from django.db.models import Sum
+
+
+def salary_transaction_create(request):
+    form = PaymentSalaryForm(request.POST or None)
+    if request.user.is_authenticated:
+        if request.method == "POST":
+            form = PaymentSalaryForm(request.POST, request.FILES)
+            if form.is_valid():
+                add_record = form.save()
+                messages.success(request, "Payment Sucessfully!....")
+                return redirect("cash_transaction_list")
+        else:
+            form = PaymentSalaryForm()
+        return render(request, "crm/salarytransaction_form.html", {"form": form})
+    else:
+        messages.success(request, "Must Be logged...")
+        return redirect("home")
+
+
+def salary_transaction_list(request):
+    queryset = Salary.objects.all()
+    payments = queryset.filter(transaction_type="Payment")
+    pending = queryset.filter(transaction_type="Pending")
+
+    # Calculate the sums
+    total_payment = payments.aggregate(Sum("amount"))["amount__sum"] or 0
+    total_pending = pending.aggregate(Sum("amount"))["amount__sum"] or 0
+
+    # Calculate the difference
+    difference = total_payment - total_pending
+
+    context = {
+        "object_list": queryset,
+        "payments": payments,
+        "pending": pending,
+        "total_payment": total_payment,
+        "total_pending": total_pending,
+        "difference": difference,
+    }
+
+    template_name = "user/bill/cashtransaction_list.html"
+    return render(request, template_name, context)

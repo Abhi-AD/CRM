@@ -21,7 +21,7 @@ from user_app.models import (
     VocalRecording,
     SportPlayer,
 )
-from crm_app.models import Stock
+from crm_app.models import Stock, Salary
 
 from django.db.models import Sum
 
@@ -359,25 +359,28 @@ def cash_transaction_create(request):
         messages.success(request, "Must Be logged...")
         return redirect("home")
 
-
 def cash_transaction_list(request):
-    queryset = CashTransaction.objects.all()
-    payments = queryset.filter(transaction_type="Payment")
-    pending = queryset.filter(transaction_type="Pending")
+    bill = CashTransaction.objects.all()
+    bill_payments = bill.filter(transaction_type="Payment")
+    
+    # Adjust the filtering criteria based on your requirements
+    bill1 = Salary.objects.all()
+    salary = bill1.filter(transaction_type="Payment")
 
     # Calculate the sums
-    total_payment = payments.aggregate(Sum("amount"))["amount__sum"] or 0
-    total_pending = pending.aggregate(Sum("amount"))["amount__sum"] or 0
+    total_payment = bill_payments.aggregate(Sum("amount"))["amount__sum"] or 0
+    total_salary = salary.aggregate(Sum("amount"))["amount__sum"] or 0
 
     # Calculate the difference
-    difference = total_payment - total_pending
+    difference = total_payment - total_salary
 
     context = {
-        "object_list": queryset,
-        "payments": payments,
-        "pending": pending,
+        "object_list": bill,
+        "object_list1": bill1,
+        "bill_payments": bill_payments,
+        "salary": salary,
         "total_payment": total_payment,
-        "total_pending": total_pending,
+        "total_salary": total_salary,
         "difference": difference,
     }
 
@@ -408,9 +411,7 @@ def add_sport(request):
 def sport_details(request):
     if request.user.is_authenticated:
         sport = Sport.objects.all()
-        return render(
-            request, "user/sport/sport_details.html", {"sport": sport}
-        )
+        return render(request, "user/sport/sport_details.html", {"sport": sport})
     else:
         messages.success(request, "YOu Must Be")
         return redirect("home")
@@ -452,7 +453,6 @@ def delete_sport(request, pk):
     return redirect("sport_details")
 
 
-
 #  voice record view
 
 
@@ -476,9 +476,7 @@ def add_voice(request):
 def voice_details(request):
     if request.user.is_authenticated:
         voice = VocalRecording.objects.all()
-        return render(
-            request, "user/voice/voice_details.html", {"voice": voice}
-        )
+        return render(request, "user/voice/voice_details.html", {"voice": voice})
     else:
         messages.success(request, "YOu Must Be")
         return redirect("home")
@@ -520,9 +518,6 @@ def delete_voice(request, pk):
     return redirect("voice_details")
 
 
-
-
-
 #  sport record view
 
 
@@ -537,7 +532,9 @@ def add_sport_player(request):
                 return redirect("sport_player_details")
         else:
             form = SportPlayerForm()
-        return render(request, "user/sport_player/add_sport_player.html", {"form": form})
+        return render(
+            request, "user/sport_player/add_sport_player.html", {"form": form}
+        )
     else:
         messages.success(request, "Must Be logged...")
         return redirect("home")
@@ -547,7 +544,9 @@ def sport_player_details(request):
     if request.user.is_authenticated:
         sport_player = SportPlayer.objects.all()
         return render(
-            request, "user/sport_player/sport_player_details.html", {"sport_player": sport_player}
+            request,
+            "user/sport_player/sport_player_details.html",
+            {"sport_player": sport_player},
         )
     else:
         messages.success(request, "YOu Must Be")
@@ -558,7 +557,9 @@ def sport_player(request, pk):
     if request.user.is_authenticated:
         customer_record = SportPlayer.objects.get(id=pk)
         return render(
-            request, "user/sport_player/sport_player.html", {"customer_record": customer_record}
+            request,
+            "user/sport_player/sport_player.html",
+            {"customer_record": customer_record},
         )
     else:
         messages.success(request, "YOu Must Be")
@@ -577,7 +578,9 @@ def update_sport_player(request, pk):
             messages.success(request, "Record has been updated!")
             return redirect("sport_player_details")
 
-        return render(request, "user/sport_player/update_sport_player.html", {"form": form})
+        return render(
+            request, "user/sport_player/update_sport_player.html", {"form": form}
+        )
     else:
         messages.success(request, "Must be logged in...")
         return redirect("home")

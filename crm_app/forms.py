@@ -1,7 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django import forms
-from crm_app.models import Staff, Stock
+from crm_app.models import Staff, Stock,Salary
 
 
 class UserSignUpForm(UserCreationForm):
@@ -30,6 +30,11 @@ class StaffRegisterForm(forms.ModelForm):
 class StockAddForm(forms.ModelForm):
     class Meta:
         model = Stock
+        fields = "__all__"
+
+class PaymentSalaryForm(forms.ModelForm):
+    class Meta:
+        model = Salary
         fields = "__all__"
 
       

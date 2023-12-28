@@ -8,7 +8,7 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    
+
                     {% if user.is_authenticated %}
                     <li class="nav-item">
                          <a class="nav-link" href="{% url 'logout_admin' %}">LogOut</a>
@@ -45,16 +45,19 @@
                               <li class="nav-link">
                                    <a class="dropdown-item" href="{% url 'stock_details' %}"> Stock Details</a>
                               </li>
+                              <li class="nav-link">
+                                   <a class="dropdown-item" href="{% url 'salary_transaction_create' %}"> Salary Pay</a>
+                              </li>
                          </ul>
                     </li>
                     {% else %}
                     <li class="nav-item">
                          <a class="nav-link" href="{% url 'main' %}">LogIn</a>
                     </li>
-                    
+
                     {% endif %}
-                         
-                    
+
+
                </ul>
           </div>
      </div>

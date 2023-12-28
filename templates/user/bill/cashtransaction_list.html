@@ -3,21 +3,21 @@
 {% block main %}
 <div class="container mt-5">
      <div class="row justify-content-center">
-          <div class="col-md-3">
+          <div class="col-md-2">
                <div class="row">
                     <div class="col-md-4">
                          <p>Payment Balance: <br>{{total_payment}}</p>
                     </div>
                     <div class="col-md-4">
-                         <p>Pending Balance: <br>{{total_pending}}</p>
+                         <p>Salary Balance: <br>{{total_salary}}</p>
                     </div>
                     <div class="col-md-4">
                          <p>Total Balance:<br>{{difference}}</p>
                     </div>
                </div>
           </div>
-          <div class="col-md-7">
-               <h2>Cash Transactions</h2>
+          <div class="col-md-5">
+               <h2>Cash Bill Transactions</h2>
                <table class="table table-striped">
                     <thead>
                          <tr>
@@ -29,6 +29,32 @@
                          </tr>
                     </thead>
                     {% for transaction in object_list %}
+                    <tbody>
+                         <tr>
+                              <td>{{forloop.counter}}</td>
+                              <td>{{transaction.name}}</td>
+                              <td>{{transaction.date}}</td>
+                              <td>{{transaction.transaction_type}}</td>
+                              <td>{{transaction.amount}}</td>
+                         </tr>
+                         <!-- Add more rows as needed -->
+                    </tbody>
+                    {% endfor %}
+               </table>
+          </div>
+          <div class="col-md-5">
+               <h2>Salary Transactions</h2>
+               <table class="table table-striped">
+                    <thead>
+                         <tr>
+                              <th>S.N</th>
+                              <th>Name</th>
+                              <th>Date</th>
+                              <th>Payment Method</th>
+                              <th>Amount</th>
+                         </tr>
+                    </thead>
+                    {% for transaction in object_list1 %}
                     <tbody>
                          <tr>
                               <td>{{forloop.counter}}</td>

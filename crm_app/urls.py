@@ -21,4 +21,7 @@ urlpatterns = [
     path('stock/<int:pk>/', views.stock, name='stock'),
     path('update_stock/<int:pk>', views.update_stock, name='update_stock'),
     path('delete_stock/<int:pk>/', views.delete_stock, name='delete_stock'),
+    
+    path('salary_transaction_create/', views.salary_transaction_create, name='salary_transaction_create')
+    
 ]
