@@ -38,5 +38,24 @@ urlpatterns = [
     path('cash_transaction_create/', views.cash_transaction_create, name="cash_transaction_create"),
     path('cash_transaction_list/', views.cash_transaction_list, name="cash_transaction_list"),
     
+    
+    path('add_sport/', views.add_sport, name='add_sport'),
+    path('sport_details/', views.sport_details, name='sport_details'),
+    path('sport/<int:pk>/', views.sport, name='sport'),
+    path('update_sport/<int:pk>', views.update_sport, name='update_sport'),
+    path('delete_sport/<int:pk>/', views.delete_sport, name='delete_sport'),
+    
+    path('add_voice/', views.add_voice, name='add_voice'),
+    path('voice_details/', views.voice_details, name='voice_details'),
+    path('voice/<int:pk>/', views.voice, name='voice'),
+    path('update_voice/<int:pk>', views.update_voice, name='update_voice'),
+    path('delete_voice/<int:pk>/', views.delete_voice, name='delete_voice'),
+    
+    path('add_sport_player/', views.add_sport_player, name='add_sport_player'),
+    path('sport_player_details/', views.sport_player_details, name='sport_player_details'),
+    path('sport_player/<int:pk>/', views.sport_player, name='sport_player'),
+    path('update_sport_player/<int:pk>', views.update_sport_player, name='update_sport_player'),
+    path('delete_sport_player/<int:pk>/', views.delete_sport_player, name='delete_sport_player'),
+    
 ]
 

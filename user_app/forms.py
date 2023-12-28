@@ -1,7 +1,16 @@
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django import forms
-from user_app.models import BillRecord, YogaMember, Member, Product,CashTransaction
+from user_app.models import (
+    BillRecord,
+    YogaMember,
+    Member,
+    Product,
+    CashTransaction,
+    Sport,
+    VocalRecording,
+    SportPlayer,
+)
 
 
 class UserSignUpForm(UserCreationForm):
@@ -43,9 +52,27 @@ class AddProductFrom(forms.ModelForm):
     class Meta:
         model = Product
         fields = "__all__"
-        
-        
+
+
 class CashTransactionForm(forms.ModelForm):
     class Meta:
         model = CashTransaction
+        fields = "__all__"
+
+
+class SportForm(forms.ModelForm):
+    class Meta:
+        model = Sport
+        fields = "__all__"
+
+
+class VocalRecordingForm(forms.ModelForm):
+    class Meta:
+        model = VocalRecording
+        fields = "__all__"
+
+
+class SportPlayerForm(forms.ModelForm):
+    class Meta:
+        model = SportPlayer
         fields = "__all__"

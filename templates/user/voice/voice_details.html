@@ -1,0 +1,47 @@
+{% extends 'user/base.html' %}
+
+{% block main %}
+{% if user.is_authenticated %}
+<div class="table-responsive">
+     <h1 class="text-center text-capitalize">voice details</h1>
+     <li class="nav-link">
+          <button class="btn btn-primary">
+
+               <a class="dropdown-item" href="{% url 'add_voice' %}">Add Voice</a>
+          </button>
+     </li>
+     <table class="table  table-hover table-bordered">
+          <thead class="table-primary">
+               <tr>
+                    <th scope="col">S.N</th>
+                    <th scope="col">Title</th>
+                    <th scope="col"> Name</th>
+                    <th scope="col">Artist Profile</th>
+                    <th scope="col">Recording Date</th>
+                    <th scope="col">Details</th>
+               </tr>
+          </thead>
+          <tbody>
+               {% if voice %}
+               {% for voice in voice %}
+               <tr class="text-capitalize">
+                    <th scope="row">Voice_{{voice.recording_date | date:"y"}}__{{voice.id}}</th>
+                    <th>{{voice.title}}</th>
+                    <th>{{voice.name}}</th>
+                    <th><img src="{{voice.artist_profile.url}}" alt="{{ voice.name }}" class="img-thumbnail"
+                              style="max-width: 40px;"></th>
+                    <th>{{voice.recording_date| date:"d M Y"}}</th>
+                    <th>
+                         <a href="{% url 'voice' voice.pk %}">View</a>
+
+                    </th>
+
+               </tr>
+
+               {% endfor %}
+               {% endif %}
+          </tbody>
+     </table>
+</div>
+{% endif %}
+{% endblock main %}

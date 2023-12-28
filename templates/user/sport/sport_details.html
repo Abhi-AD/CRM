@@ -1,0 +1,47 @@
+{% extends 'user/base.html' %}
+
+{% block main %}
+{% if user.is_authenticated %}
+<div class="table-responsive">
+     <h1 class="text-center text-capitalize">sport details</h1>
+     <li class="nav-link">
+          <button class="btn btn-primary">
+
+               <a class="dropdown-item" href="{% url 'add_sport' %}">Add Sport</a>
+          </button>
+     </li>
+     <table class="table  table-hover table-bordered">
+          <thead class="table-primary">
+               <tr>
+                    <th scope="col">S.N</th>
+                    <th scope="col">Sport Name</th>
+                    <th scope="col">Profile</th>
+                    <th scope="col">Player</th>
+                    <th scope="col">Equipment</th>
+                    <th scope="col">Details</th>
+               </tr>
+          </thead>
+          <tbody>
+               {% if sport %}
+               {% for sport in sport %}
+               <tr class="text-capitalize">
+                    <th scope="row">{{sport.id}}</th>
+                    <th>{{sport.name}}</th>
+                    <th><img src="{{sport.images.url}}" alt="{{ sport.name }}" class="img-thumbnail"
+                              style="max-width: 40px;"></th>
+                    <th>{{sport.players}}</th>
+                    <th>{{sport.equipment}}</th>
+                    <th>
+                         <a href="{% url 'sport' sport.pk %}">View</a>
+
+                    </th>
+
+               </tr>
+
+               {% endfor %}
+               {% endif %}
+          </tbody>
+     </table>
+</div>
+{% endif %}
+{% endblock main %}

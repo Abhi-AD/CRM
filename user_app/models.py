@@ -116,3 +116,35 @@ class CashTransaction(models.Model):
         return f"{self.transaction_type} - {self.amount} {self.name}"
 
 
+
+class Sport(models.Model):
+    name = models.CharField(max_length=100)
+    players = models.PositiveIntegerField()
+    equipment = models.CharField(max_length=100)
+    images = models.ImageField(upload_to="Sport/Sport/%Y/%m/%d", blank=False)
+    
+
+    def __str__(self):
+        return self.name
+
+
+class VocalRecording(models.Model):
+    title = models.CharField(max_length=255)
+    name = models.CharField(max_length=255)
+    artist_profile = models.ImageField(upload_to="artist/artist_profile/%Y/%m/%d", blank=False)
+    recording_date = models.DateField(default = timezone.now())
+    audio_file = models.FileField(upload_to='artist/vocal_recordings/%Y/%m/%d')
+
+    def __str__(self):
+        return self.title
+
+
+class SportPlayer(models.Model):
+    sport = models.ForeignKey(Sport, on_delete=models.CASCADE)
+    player_name = models.CharField(max_length=100)
+    position = models.CharField(max_length=50)
+    images = models.ImageField(upload_to="Sport/Sportplayer/%Y/%m/%d", blank=False)
+    
+
+    def __str__(self):
+        return f"{self.player_name} - {self.sport.name}"

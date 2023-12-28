@@ -3,6 +3,10 @@
 {% block main %}
 {% if user.is_authenticated %}
 <div class="table-responsive">
+     <li class="nav-link">
+           <button class="btn btn-primary">
+          <a class="dropdown-item" href="{% url 'add_record' %}">Add Bill</a></button>
+     </li>
      <table class="table table-striped table-hover table-bordered">
           <thead class="table-warning">
                <tr>
